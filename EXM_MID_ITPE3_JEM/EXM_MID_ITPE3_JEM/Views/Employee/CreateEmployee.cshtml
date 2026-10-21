@@ -1,0 +1,147 @@
+﻿@model EXM_MID_ITPE3_JEM.Models.tblemployee
+
+@{
+    ViewBag.Title = "CreateEmployee";
+}
+
+<h2>CreateEmployee</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblemployee</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmployeeNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmployeeNumber)
+            @Html.ValidationMessageFor(model => model.EmployeeNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MiddleName)
+            @Html.ValidationMessageFor(model => model.MiddleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoursWork)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoursWork)
+            @Html.ValidationMessageFor(model => model.HoursWork)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoursOvertime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoursOvertime)
+            @Html.ValidationMessageFor(model => model.HoursOvertime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoursLate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoursLate)
+            @Html.ValidationMessageFor(model => model.HoursLate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RatePerHour)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RatePerHour)
+            @Html.ValidationMessageFor(model => model.RatePerHour)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GrossPay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GrossPay)
+            @Html.ValidationMessageFor(model => model.GrossPay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tax)
+            @Html.ValidationMessageFor(model => model.Tax)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SSS)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SSS)
+            @Html.ValidationMessageFor(model => model.SSS)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PagIbig)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PagIbig)
+            @Html.ValidationMessageFor(model => model.PagIbig)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhilHealth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhilHealth)
+            @Html.ValidationMessageFor(model => model.PhilHealth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TotalDeduction)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TotalDeduction)
+            @Html.ValidationMessageFor(model => model.TotalDeduction)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NetPay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NetPay)
+            @Html.ValidationMessageFor(model => model.NetPay)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ReadAllEmployee")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

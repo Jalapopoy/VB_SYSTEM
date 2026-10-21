@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "PaySlipJEM";
+}
+
+<h2>PaySlipJEM</h2>
+
+<br />
+
+@using (Html.BeginForm("PaySlipJEM", "Home", FormMethod.Post))
+{
+    <div>
+        <label>No. of Hours Work:</label><br />
+        <input type="number" step="any" name="dblNHWorkJEM" required />
+    </div>
+    <br />
+    <div>
+        <label>No. of Hours Overtime:</label><br />
+        <input type="number" step="any" name="dblNHOTJEM" required />
+    </div>
+    <br />
+    <div>
+        <label>No. of Hours Late:</label><br />
+        <input type="number" step="any" name="dblNHLateJEM" required />
+    </div>
+    <br />
+    <div>
+        <label>Rate Per Hour:</label><br />
+        <input type="number" step="any" name="dblRPHourJEM" required />
+    </div>
+    <br />
+    <input type="submit" value="Calculate" />
+}
+    
+    <hr />
+    
+    @if (ViewBag.IsSubmitted == true)
+{
+    <h3>Payslip Total</h3>
+    <p>No. of Hours Work: @ViewBag.HWorkJEM</p>
+    <p>No. of Hours Overtime: @ViewBag.HOTJEM</p>
+    <p>No. of Hours Late: @ViewBag.HLateJEM</p>
+    <p>Rate Per Hour: @ViewBag.RPHourJEM</p>
+    <hr />
+    <p>Gross Pay: @ViewBag.GPayJEM</p>
+    <p>Tax: @ViewBag.TaxJEM</p>
+    <p>SSS: @ViewBag.SSSJEM</p>
+    <p>PagIbig: @ViewBag.PIbigJEM</p>
+    <p>PhilHealth: @ViewBag.PHealthJEM</p>
+    <p>Total Deductions: @ViewBag.TDeducJEM</p>
+    <p>Net Pay: @ViewBag.NPayJEM</p>
+}
+
+

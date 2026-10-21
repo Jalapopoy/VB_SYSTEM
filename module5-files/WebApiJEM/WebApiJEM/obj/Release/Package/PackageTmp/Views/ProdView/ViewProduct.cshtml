@@ -1,0 +1,87 @@
+﻿@model WebApiJEM.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "ViewProduct";
+}
+
+<br />
+<h2 style="margin-left:10px">ViewProduct</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.id)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.id)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.name)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.name)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.description)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.description)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.price)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.price)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="display-label">
+                 @Html.DisplayNameFor(model => model.category_id)
+            </div>
+        </td>
+        <td>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.category_id)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            <div class="btn btn-secondary pull-center m-b-15px">
+                <span class="glyphicon glyphicon-plus"></span>@Html.ActionLink("Edit Product Information", "EditProduct", new { id = Model.id }, new {@class = "text-white text-decocation-none"})
+            </div>
+            <div class="btn btn-secondary pull-right m-b-15px">
+                <span class="glyphicon glyphicon-plus"></span>@Html.ActionLink("Back to Product List", "Index", null, new { @class = "text-white text-decoration-none" })
+            </div>
+        </td>
+    </tr>   
+</table>
+

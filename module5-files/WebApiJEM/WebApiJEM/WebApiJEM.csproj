@@ -238,6 +238,7 @@
     <Content Include="Models\apidb.edmx.diagram">
       <DependentUpon>apidb.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\MVCWeb.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Models\apidb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

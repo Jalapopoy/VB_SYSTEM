@@ -29,6 +29,6 @@ D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApi
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\bin\System.Web.WebPages.Razor.xml
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\obj\Debug\WebApiJEM.dll
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\obj\Debug\WebApiJEM.pdb
-D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\obj\Debug\WebApiJEM.csprojResolveAssemblyReference.cache
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\bin\EntityFramework.SqlServer.dll
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\bin\EntityFramework.SqlServer.xml
+D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\module5-files\WebApiJEM\WebApiJEM\obj\Debug\WebApiJEM.csprojResolveAssemblyReference.cache
