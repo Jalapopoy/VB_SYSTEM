@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_exam_itpe3_jemModelStoreContainer" CdmEntityContainer="db_exam_itpe3_jemEntities">
+    <EntitySetMapping Name="tblemployees">
+      <EntityTypeMapping TypeName="db_exam_itpe3_jemModel.tblemployee">
+        <MappingFragment StoreEntitySet="tblemployee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="HoursOT" ColumnName="HoursOT" />
+          <ScalarProperty Name="HoursLate" ColumnName="HoursLate" />
+          <ScalarProperty Name="RatePerHour" ColumnName="RatePerHour" />
+          <ScalarProperty Name="GrossPay" ColumnName="GrossPay" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="SSS" ColumnName="SSS" />
+          <ScalarProperty Name="PagIbig" ColumnName="PagIbig" />
+          <ScalarProperty Name="PhilHealth" ColumnName="PhilHealth" />
+          <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
+          <ScalarProperty Name="NetPay" ColumnName="NetPay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

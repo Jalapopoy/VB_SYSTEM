@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_exam_itpe3_jemModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="db_exam_itpe3_jemEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tblemployees" EntityType="db_exam_itpe3_jemModel.tblemployee" />
+  </EntityContainer>
+  <EntityType Name="tblemployee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeNumber" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="HoursOT" Type="Int32" />
+    <Property Name="HoursLate" Type="Int32" />
+    <Property Name="RatePerHour" Type="Int32" />
+    <Property Name="GrossPay" Type="Int32" />
+    <Property Name="Tax" Type="Int32" />
+    <Property Name="SSS" Type="Int32" />
+    <Property Name="PagIbig" Type="Int32" />
+    <Property Name="PhilHealth" Type="Int32" />
+    <Property Name="TotalDeduction" Type="Int32" />
+    <Property Name="NetPay" Type="Int32" />
+  </EntityType>
+</Schema>

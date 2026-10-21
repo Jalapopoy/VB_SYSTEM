@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "HtmlElementsJEM";
+}
+
+<h2>HtmlElementsJEM</h2>
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>Full Name:</td>
+                <td><input type="text" name="full_name" /></td>
+            </tr>
+            <tr>
+                <td>Home Address:</td>
+                <td><textarea name="address"></textarea></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>
+                    <select name="gender">
+                        <option value="Male">Select One</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Language Skills:</td>
+                <td>
+                    <input type="checkbox" name="capampanga"/>Capampangan <br />
+                    <input type="checkbox" name="tagalog" />Tagalog <br />
+                    <input type="checkbox" name="english"/>English <br />
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <input type="radio" name="status" value="contract"/>Contractual <br />
+                    <input type="radio" name="status" value="regular"/>Regular <br />
+                    <input type="radio" name="status" value="perm"/>Permanent <br />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit The Form"/></td>
+            </tr>
+        </table>
+    </body>
+</html>
