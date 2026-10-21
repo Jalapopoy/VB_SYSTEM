@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "ArrayLoopsJEM";
+}
+
+<h2>ArrayLoopsJEM</h2>
+<h3>List of Courses</h3>
+<ul>
+    @foreach (var corsJEM in ViewBag.CoursesJEM)
+    {
+        <li>@corsJEM</li>
+    }
+</ul>
+<h3>Year Levels</h3>
+<ul>
+    @foreach (var lvlJEM in ViewBag.YearLevelsJEM)
+    {
+        <li>@lvlJEM</li>
+    }
+</ul>
+
+@for (int i = 0; i <= 4; i++)
+{
+    //Accessing the item by Index
+    <p>Student Name: @ViewBag.FirstNamesJEM[i] @ViewBag.LastNamesJEM[i]</p>
+    <p>Course: @ViewBag.CoursesJEM[i]</p>
+    <p>Year Level: @ViewBag.YearLevelsJEM[i]</p>
+    <p>Prelim Grade: @ViewBag.PreGradesJEM[i]</p>
+    <p>Midterm Grade: @ViewBag.MidGradesJEM[i]</p>
+    <p>Final Grade: @ViewBag.FinGradesJEM[i]</p>
+    <p>Subject Grade: @( ((int)@ViewBag.PreGradesJEM[i]  + (int)@ViewBag.MidGradesJEM[i] + (int)@ViewBag.FinGradesJEM[i]) / 3)</p>
+    <br />
+}

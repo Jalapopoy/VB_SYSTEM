@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebApiJEM.Models.ProductViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2 style="margin-left:10px">Product List</h2>
+<br />
+
+<p style="margin-left:10px">
+    @Html.ActionLink("Create New", "CreateProduct")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category_id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category_id)
+        </td>
+        <td>
+            <div class="btn btn-secondary pull-right m-b-15px">
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.id }, new { @class = "text-white glyphicon text-decoration-none" })
+            </div>
+            <div class="btn btn-secondary pull-right m-b-15px">
+                @Html.ActionLink("Details", "ViewProduct", new { id=item.id }, new { @class = "text-white glyphicon text-decoration-none" })
+            </div>
+            <div class="btn btn-secondary pull-right m-b-15px">
+                @Html.ActionLink("Delete", "DeleteProduct", new { id=item.id }, new { @class = "text-white glyphicon text-decoration-none" })
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

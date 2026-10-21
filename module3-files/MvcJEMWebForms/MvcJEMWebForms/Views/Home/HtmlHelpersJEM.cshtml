@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "HtmlHelpersJEM";
+}
+
+<h2>HtmlHelpersJEM</h2>
+<table>
+    <tr>
+        <td>
+            @Html.Label("Full Name:")
+        </td>
+        <td>
+            @Html.TextBox("StudentName", null)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Address:")
+        </td>
+        <td>
+            @Html.TextArea("address", null, null)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Gender:")
+        </td>
+        <td>
+            @Html.DropDownList("gender", new List<SelectListItem> {
+                new SelectListItem { Value = "SELECT ONE" , Text = "SELECT ONE" },
+                new SelectListItem { Value = "Male" , Text = "Male" },
+                new SelectListItem { Value = "Female" , Text = "Female" }
+            }, null, null)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Language Skills:")
+        </td>
+        <td>
+            @Html.CheckBox("cap", false) Capampangan <br />
+            @Html.CheckBox("tag", false) Tagalog <br />
+            @Html.CheckBox("eng", false) English <br />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Status:")
+        </td>
+        <td>
+            @Html.RadioButton("status", "contract") Contractual <br />
+            @Html.RadioButton("status", "reg") Regular <br />
+            @Html.RadioButton("status", "per") Permanent <br />
+        </td>
+    </tr>
+    <tr>
+        <td>Upload Photo:</td>
+        <td><input type="file" name="image" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Submit The Form" /></td>
+    </tr>
+</table>

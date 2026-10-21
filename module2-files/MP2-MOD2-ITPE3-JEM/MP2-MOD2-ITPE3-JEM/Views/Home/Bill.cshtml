@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Bill";
+
+    string strPNumJEM = "4";
+    string strLNameJEM = "Penduko";
+    string strFNameJEM = "Pedro";
+    string strRTypeJEM = "PICU";
+    double dblAgeJEM = 60;
+    string strAgeGroupJEM = "";
+    string strRDescJEM = "";
+    
+    double dblRPDayJEM = 1500;
+    double dblNDaysJEM = 15;
+    double dblLChargesJEM = 300;
+    double dblEChargesJEM = 700;
+
+    double dblRChargesJEM = dblRPDayJEM * dblNDaysJEM;
+    double dblTAmountJEM = dblRChargesJEM + dblLChargesJEM + dblEChargesJEM;
+    double dblHInsuranceJEM = dblTAmountJEM * .05;
+    double dblPHealthJEM = dblTAmountJEM * .06;
+    double dblSSSJEM = dblTAmountJEM * .07;
+    double dblTDiscountJEM = dblHInsuranceJEM + dblPHealthJEM + dblSSSJEM;
+    double dblAPayJEM = dblTAmountJEM - dblTDiscountJEM;
+
+    ViewBag.PNumJEM = strPNumJEM;
+    ViewBag.LNameJEM = strLNameJEM;
+    ViewBag.FNameJEM = strFNameJEM;
+    ViewBag.AgeJEM = dblAgeJEM;
+    ViewBag.RTypeJEM = strRTypeJEM;
+    ViewBag.RPDayJEM = dblRPDayJEM;
+    ViewBag.NDaysJEM = dblNDaysJEM;
+    ViewBag.LChargesJEM = dblLChargesJEM;
+    ViewBag.EChargesJEM = dblEChargesJEM;
+    ViewBag.RChargesJEM = dblRChargesJEM;
+    ViewBag.TAmountJEM = dblTAmountJEM;
+    ViewBag.HInsuranceJEM = dblHInsuranceJEM;
+    ViewBag.PHealthJEM = dblPHealthJEM;
+    ViewBag.SSSJEM = dblSSSJEM;
+    ViewBag.TDiscountJEM = dblTDiscountJEM;
+    ViewBag.APayJEM = dblAPayJEM;
+    
+
+    if (dblAgeJEM >= 0 && dblAgeJEM <= 2)
+    {
+        strAgeGroupJEM = "Babies";
+    }
+    else if (dblAgeJEM >= 3 && dblAgeJEM <= 16)
+    {
+        strAgeGroupJEM = "Children";
+    }
+    else if (dblAgeJEM >= 17 && dblAgeJEM <= 30)
+    {
+        strAgeGroupJEM = "Young Adults";
+    }
+    else if (dblAgeJEM >= 31 && dblAgeJEM <= 45)
+    {
+        strAgeGroupJEM = "Middle Aged Adults";
+    }
+    else
+    {
+        strAgeGroupJEM = "Old Adults!";
+    }
+    ViewBag.AgeGroupJEM = strAgeGroupJEM;
+    
+    switch (strRTypeJEM)
+    {
+        case "W":
+            strRDescJEM = "Ward";
+            break;
+        case "SPR":
+            strRDescJEM = "Semi Private Room";
+            break;
+        case "PR":
+            strRDescJEM = "Private Room";
+            break;
+        case "ER":
+            strRDescJEM = "Executive or Suite Room";
+            break;
+        case "ICU":
+            strRDescJEM = "Intensive Care Unit";
+            break;
+        case "NICU":
+            strRDescJEM = "Neonatal Intensive Care Unit";
+            break;
+        case "PICU":
+            strRDescJEM = "Pediatric Intensive Care Unit";
+            break;
+        case "IC":
+            strRDescJEM = "Incubator Cost";
+            break;
+    }
+    ViewBag.RoomDescJEM = strRDescJEM;
+}
+
+<h2>Hospital Bill</h2>
+<text>Patient Number: @ViewBag.PNumJEM</text><br />
+<text>Last Name: @ViewBag.LNameJEM</text><br />
+<text>First Name: @ViewBag.FNameJEM</text><br />
+<text>Age: @ViewBag.AgeJEM</text><br />
+<text>Age Group: @ViewBag.AgeGroupJEM</text><br />
+<text>Room Type: @ViewBag.RTypeJEM</text><br />
+<text>Room Description: @ViewBag.RoomDescJEM</text><br /><br />
+
+<text>Rate Per Day: @ViewBag.RPDayJEM</text><br />
+<text>No. Of Days: @ViewBag.NDaysJEM</text><br />
+<text>Laboratory Charges: @ViewBag.LChargesJEM</text><br />
+<text>Extra Charges: @ViewBag.EChargesJEM</text><br />
+<text>Room Charge: @ViewBag.RChargesJEM</text><br />
+<text>Total Amount:<b> @ViewBag.TAmountJEM</text></b><br /><br />
+
+<text>Health Insurance: @ViewBag.HInsuranceJEM</text><br />
+<text>PhilHealth: @ViewBag.PHealthJEM</text><br />
+<text>SSS: @ViewBag.SSSJEM</text><br />
+<text>Total Discount: @ViewBag.TDiscountJEM</text><br />
+<text>Amount to Pay:<b> @ViewBag.APayJEM</text></b><br />

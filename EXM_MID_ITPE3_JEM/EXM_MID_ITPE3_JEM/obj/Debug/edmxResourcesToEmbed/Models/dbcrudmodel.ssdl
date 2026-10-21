@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_exam_itpe3_jemModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="db_exam_itpe3_jemModelStoreContainer">
+    <EntitySet Name="tblemployee" EntityType="db_exam_itpe3_jemModel.Store.tblemployee" store:Type="Tables" Schema="db_exam_itpe3_jem" />
+  </EntityContainer>
+  <EntityType Name="tblemployee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeNumber" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+    <Property Name="HoursWorked" Type="int" />
+    <Property Name="HoursOT" Type="int" />
+    <Property Name="HoursLate" Type="int" />
+    <Property Name="RatePerHour" Type="int" />
+    <Property Name="GrossPay" Type="int" />
+    <Property Name="Tax" Type="int" />
+    <Property Name="SSS" Type="int" />
+    <Property Name="PagIbig" Type="int" />
+    <Property Name="PhilHealth" Type="int" />
+    <Property Name="TotalDeduction" Type="int" />
+    <Property Name="NetPay" Type="int" />
+  </EntityType>
+</Schema>

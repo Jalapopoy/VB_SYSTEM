@@ -1,0 +1,57 @@
+﻿@model MP2_MOD4_ITPE3_JEM.Models.tblemployee
+
+@{
+    ViewBag.Title = "ReadOneEmployee";
+}
+
+<h2>ReadOneEmployee</h2>
+
+<fieldset>
+    <legend>tblemployee</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmployeeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmployeeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MiddleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MiddleName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "UpdateEmployee", new { id=Model.EmployeeID }) |
+    @Html.ActionLink("Back to List", "ReadAllEmployee")
+</p>
