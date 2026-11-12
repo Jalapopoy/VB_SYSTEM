@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_barangay_systemModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="db_barangay_systemModelStoreContainer">
+          <EntitySet Name="tbldocumenttype" EntityType="db_barangay_systemModel.Store.tbldocumenttype" store:Type="Tables" Schema="db_barangay_system" />
+          <EntitySet Name="tblhousehold" EntityType="db_barangay_systemModel.Store.tblhousehold" store:Type="Tables" Schema="db_barangay_system" />
+          <EntitySet Name="tblpayment" EntityType="db_barangay_systemModel.Store.tblpayment" store:Type="Tables" Schema="db_barangay_system" />
+          <EntitySet Name="tblrequest" EntityType="db_barangay_systemModel.Store.tblrequest" store:Type="Tables" Schema="db_barangay_system" />
+          <EntitySet Name="tblresident" EntityType="db_barangay_systemModel.Store.tblresident" store:Type="Tables" Schema="db_barangay_system" />
+          <EntitySet Name="tbluser" EntityType="db_barangay_systemModel.Store.tbluser" store:Type="Tables" Schema="db_barangay_system" />
+        </EntityContainer>
+        <EntityType Name="tbldocumenttype">
+          <Key>
+            <PropertyRef Name="DocTypeID" />
+          </Key>
+          <Property Name="DocTypeID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Fee" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="ProcessingDays" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblhousehold">
+          <Key>
+            <PropertyRef Name="HouseholdID" />
+          </Key>
+          <Property Name="HouseholdID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="HouseholdNo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Purok" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="HeadResidentID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblpayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="RequestID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
+          <Property Name="ORNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblrequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ResidentID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DocTypeID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Purpose" Type="varchar" MaxLength="255" />
+          <Property Name="DateRequested" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="ProcessedBy" Type="varchar" MaxLength="50" />
+          <Property Name="DateReleased" Type="datetime" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblresident">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="HouseholdID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Birthdate" Type="date" />
+          <Property Name="Sex" Type="varchar" MaxLength="50" />
+          <Property Name="CivilStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Occupation" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbluser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+          <Property Name="ResidentID" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="created_at" Type="datetime" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_barangay_systemModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db_barangay_systemEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tbldocumenttypes" EntityType="db_barangay_systemModel.tbldocumenttype" />
+          <EntitySet Name="tblhouseholds" EntityType="db_barangay_systemModel.tblhousehold" />
+          <EntitySet Name="tblpayments" EntityType="db_barangay_systemModel.tblpayment" />
+          <EntitySet Name="tblrequests" EntityType="db_barangay_systemModel.tblrequest" />
+          <EntitySet Name="tblresidents" EntityType="db_barangay_systemModel.tblresident" />
+          <EntitySet Name="tblusers" EntityType="db_barangay_systemModel.tbluser" />
+        </EntityContainer>
+        <EntityType Name="tbldocumenttype">
+          <Key>
+            <PropertyRef Name="DocTypeID" />
+          </Key>
+          <Property Name="DocTypeID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Fee" Type="Decimal" Nullable="false" />
+          <Property Name="ProcessingDays" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblhousehold">
+          <Key>
+            <PropertyRef Name="HouseholdID" />
+          </Key>
+          <Property Name="HouseholdID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HouseholdNo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Purok" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="HeadResidentID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblpayment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RequestID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ORNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PaymentDate" Type="DateTime" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblrequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ResidentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DocTypeID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Purpose" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DateRequested" Type="DateTime" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ProcessedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateReleased" Type="DateTime" />
+          <Property Name="Remarks" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblresident">
+          <Key>
+            <PropertyRef Name="ResidentID" />
+          </Key>
+          <Property Name="ResidentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HouseholdID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Birthdate" Type="DateTime" />
+          <Property Name="Sex" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CivilStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Occupation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbluser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Role" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ResidentID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="created_at" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_barangay_systemModelStoreContainer" CdmEntityContainer="db_barangay_systemEntities">
+          <EntitySetMapping Name="tbldocumenttypes">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tbldocumenttype">
+              <MappingFragment StoreEntitySet="tbldocumenttype">
+                <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="ProcessingDays" ColumnName="ProcessingDays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblhouseholds">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tblhousehold">
+              <MappingFragment StoreEntitySet="tblhousehold">
+                <ScalarProperty Name="HouseholdID" ColumnName="HouseholdID" />
+                <ScalarProperty Name="HouseholdNo" ColumnName="HouseholdNo" />
+                <ScalarProperty Name="Purok" ColumnName="Purok" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HeadResidentID" ColumnName="HeadResidentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblpayments">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tblpayment">
+              <MappingFragment StoreEntitySet="tblpayment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="ORNumber" ColumnName="ORNumber" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblrequests">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tblrequest">
+              <MappingFragment StoreEntitySet="tblrequest">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="DocTypeID" ColumnName="DocTypeID" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProcessedBy" ColumnName="ProcessedBy" />
+                <ScalarProperty Name="DateReleased" ColumnName="DateReleased" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblresidents">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tblresident">
+              <MappingFragment StoreEntitySet="tblresident">
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="HouseholdID" ColumnName="HouseholdID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="CivilStatus" ColumnName="CivilStatus" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblusers">
+            <EntityTypeMapping TypeName="db_barangay_systemModel.tbluser">
+              <MappingFragment StoreEntitySet="tbluser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="ResidentID" ColumnName="ResidentID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

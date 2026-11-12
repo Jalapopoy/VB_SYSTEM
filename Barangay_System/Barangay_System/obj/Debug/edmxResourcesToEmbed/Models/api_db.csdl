@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_barangay_systemModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="db_barangay_systemEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tbldocumenttypes" EntityType="db_barangay_systemModel.tbldocumenttype" />
+    <EntitySet Name="tblhouseholds" EntityType="db_barangay_systemModel.tblhousehold" />
+    <EntitySet Name="tblpayments" EntityType="db_barangay_systemModel.tblpayment" />
+    <EntitySet Name="tblrequests" EntityType="db_barangay_systemModel.tblrequest" />
+    <EntitySet Name="tblresidents" EntityType="db_barangay_systemModel.tblresident" />
+    <EntitySet Name="tblusers" EntityType="db_barangay_systemModel.tbluser" />
+  </EntityContainer>
+  <EntityType Name="tbldocumenttype">
+    <Key>
+      <PropertyRef Name="DocTypeID" />
+    </Key>
+    <Property Name="DocTypeID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Fee" Type="Decimal" Nullable="false" />
+    <Property Name="ProcessingDays" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblhousehold">
+    <Key>
+      <PropertyRef Name="HouseholdID" />
+    </Key>
+    <Property Name="HouseholdID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="HouseholdNo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Purok" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="HeadResidentID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblpayment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="RequestID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" />
+    <Property Name="PaymentMethod" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ORNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PaymentDate" Type="DateTime" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblrequest">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ResidentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DocTypeID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Purpose" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="DateRequested" Type="DateTime" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ProcessedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DateReleased" Type="DateTime" />
+    <Property Name="Remarks" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblresident">
+    <Key>
+      <PropertyRef Name="ResidentID" />
+    </Key>
+    <Property Name="ResidentID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="HouseholdID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Birthdate" Type="DateTime" />
+    <Property Name="Sex" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CivilStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Occupation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbluser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Role" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ResidentID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Status" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="created_at" Type="DateTime" />
+  </EntityType>
+</Schema>

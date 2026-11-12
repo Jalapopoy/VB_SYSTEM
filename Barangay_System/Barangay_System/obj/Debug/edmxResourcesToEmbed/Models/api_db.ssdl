@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_barangay_systemModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="db_barangay_systemModelStoreContainer">
+    <EntitySet Name="tbldocumenttype" EntityType="db_barangay_systemModel.Store.tbldocumenttype" store:Type="Tables" Schema="db_barangay_system" />
+    <EntitySet Name="tblhousehold" EntityType="db_barangay_systemModel.Store.tblhousehold" store:Type="Tables" Schema="db_barangay_system" />
+    <EntitySet Name="tblpayment" EntityType="db_barangay_systemModel.Store.tblpayment" store:Type="Tables" Schema="db_barangay_system" />
+    <EntitySet Name="tblrequest" EntityType="db_barangay_systemModel.Store.tblrequest" store:Type="Tables" Schema="db_barangay_system" />
+    <EntitySet Name="tblresident" EntityType="db_barangay_systemModel.Store.tblresident" store:Type="Tables" Schema="db_barangay_system" />
+    <EntitySet Name="tbluser" EntityType="db_barangay_systemModel.Store.tbluser" store:Type="Tables" Schema="db_barangay_system" />
+  </EntityContainer>
+  <EntityType Name="tbldocumenttype">
+    <Key>
+      <PropertyRef Name="DocTypeID" />
+    </Key>
+    <Property Name="DocTypeID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="varchar" MaxLength="255" />
+    <Property Name="Fee" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="ProcessingDays" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblhousehold">
+    <Key>
+      <PropertyRef Name="HouseholdID" />
+    </Key>
+    <Property Name="HouseholdID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="HouseholdNo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Purok" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="150" />
+    <Property Name="HeadResidentID" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblpayment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="RequestID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
+    <Property Name="ORNumber" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentDate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblrequest">
+    <Key>
+      <PropertyRef Name="RequestID" />
+    </Key>
+    <Property Name="RequestID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ResidentID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DocTypeID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Purpose" Type="varchar" MaxLength="255" />
+    <Property Name="DateRequested" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="ProcessedBy" Type="varchar" MaxLength="50" />
+    <Property Name="DateReleased" Type="datetime" />
+    <Property Name="Remarks" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tblresident">
+    <Key>
+      <PropertyRef Name="ResidentID" />
+    </Key>
+    <Property Name="ResidentID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="HouseholdID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Birthdate" Type="date" />
+    <Property Name="Sex" Type="varchar" MaxLength="50" />
+    <Property Name="CivilStatus" Type="varchar" MaxLength="50" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Occupation" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbluser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+    <Property Name="ResidentID" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="created_at" Type="datetime" />
+  </EntityType>
+</Schema>
