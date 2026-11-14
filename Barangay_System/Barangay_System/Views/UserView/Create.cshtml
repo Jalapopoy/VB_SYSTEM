@@ -1,4 +1,4 @@
-﻿@model Barangay_System.Models.tbluser
+﻿@model Barangay_System.Models.UserViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,19 +6,11 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create", "UserView", FormMethod.Post)) {
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>tbluser</legend>
-
-        @Html.AntiForgeryToken()
-        @if (ViewBag.Message != null)
-        {
-            <div style="border:solid 1px green">
-                @ViewBag.Message
-            </div>
-        }
+        <legend>UserViewModel</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserID)
@@ -67,6 +59,7 @@
             @Html.EditorFor(model => model.Status)
             @Html.ValidationMessageFor(model => model.Status)
         </div>
+
 
         <p>
             <input type="submit" value="Create" />

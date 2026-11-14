@@ -1,4 +1,4 @@
-﻿@model Barangay_System.Models.tbluser
+﻿@model Barangay_System.Models.UserViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -51,8 +51,14 @@
         @Html.DisplayFor(model => model.Status)
     </div>
 
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.created_at)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_at)
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new {  id=Model.UserID  }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,0 +1,128 @@
+﻿@model Barangay_System.Models.ResidentViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ResidentViewModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResidentID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResidentID)
+            @Html.ValidationMessageFor(model => model.ResidentID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseholdID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HouseholdID)
+            @Html.ValidationMessageFor(model => model.HouseholdID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MiddleName)
+            @Html.ValidationMessageFor(model => model.MiddleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Birthdate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Birthdate, "{0:yyyy-MM-dd}", new { type = "date" })
+            @Html.ValidationMessageFor(model => model.Birthdate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sex)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Sex,
+                new SelectList(new[]
+                {
+                    new { Value = "Male", Text = "Male" },
+                    new { Value = "Female", Text = "Female" }
+                }, "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.Sex)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CivilStatus)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CivilStatus,
+                new SelectList(new[]
+                {
+                    new { Value = "Single", Text = "Single" },
+                    new { Value = "Married", Text = "Married" },
+                    new { Value = "Widowed", Text = "Widowed" },
+                    new { Value = "Separated", Text = "Separated" }
+                        
+                }, "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.CivilStatus)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactNo)
+            @Html.ValidationMessageFor(model => model.ContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Occupation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Occupation)
+            @Html.ValidationMessageFor(model => model.Occupation)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,4 +1,4 @@
-﻿@model Barangay_System.Models.tbluser
+﻿@model Barangay_System.Models.UserViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>tbluser</legend>
+        <legend>UserViewModel</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UserID)

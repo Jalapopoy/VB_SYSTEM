@@ -1,94 +1,166 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data;
+using System.Net.Http;
+using System.Web.Http;
 using Barangay_System.Models;
 
 namespace Barangay_System.Controllers
 {
-    public class ResidentController : Controller
+    public class ResidentController : ApiController
     {
         //
         // GET: /Resident/
 
-        db_barangay_systemEntities dbConn = new db_barangay_systemEntities();
-
-        //1. CREATE VIEW METHOD
-        public ActionResult Create()
+        public IHttpActionResult GetAllResidents()
         {
-            return View();
-        }
+            IList<ResidentViewModel> resis = null;
 
-        [HttpPost] //used for posting html data to the server.
-        public ActionResult Create(tblresident R)
-        {
-            if (ModelState.IsValid)
+            using (var ctx = new db_barangay_systemEntities())
             {
-                dbConn.tblresidents.Add(R);
-                dbConn.SaveChanges();
-                ModelState.Clear();
-                R = null;
-                return RedirectToAction("Index"); // ViewUser will be created later
+                resis = ctx.tblresidents.Select(u => new ResidentViewModel()
+                {
+                    ResidentID = u.ResidentID,
+                    HouseholdID = u.HouseholdID,
+                    FirstName = u.FirstName,
+                    MiddleName = u.MiddleName,
+                    LastName = u.LastName,
+                    Birthdate = u.Birthdate,
+                    Sex = u.Sex,
+                    CivilStatus = u.CivilStatus,
+                    ContactNo = u.ContactNo,
+                    Email = u.Email,
+                    Occupation = u.Occupation
+                }).ToList<ResidentViewModel>();
             }
 
-            return View();
-        }
-        public ActionResult Index()
-        {
-            var residents = dbConn.tblresidents.ToList();
-            return View(residents);
-        }
-
-        //3. READ ONE or DETAILS VIEW METHOD
-        public ActionResult Details(string id)
-        {
-            return View(dbConn.tblresidents.Where(x => x.ResidentID == id).FirstOrDefault());
-        }
-
-        //4. UPDATE or EDIT VIEW
-        public ActionResult Edit(string id)
-        {
-            return View(dbConn.tblresidents.Where(x => x.ResidentID == id).FirstOrDefault());
-        }
-
-        [HttpPost]
-        public ActionResult Edit(string id, tblresident resident)
-        {
-            try
+            if (resis.Count == 0)
             {
-                dbConn.Entry(resident).State = EntityState.Modified;
-                dbConn.SaveChanges();
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            return Ok(resis);
         }
 
-        //5. DELETE VIEW
-        public ActionResult Delete(string id)
+        // Read One Method
+        public IHttpActionResult GetResidentById(string id)
         {
-            return View(dbConn.tblusers.Where(x => x.ResidentID == id).FirstOrDefault());
+            ResidentViewModel u = null;
+
+            using (var ctx = new db_barangay_systemEntities())
+            {
+                u = ctx.tblresidents.Where(s => s.ResidentID == id)
+                    .Select(s => new ResidentViewModel()
+                    {
+                        ResidentID = s.ResidentID,
+                        HouseholdID = s.HouseholdID,
+                        FirstName = s.FirstName,
+                        MiddleName = s.MiddleName,
+                        LastName = s.LastName,
+                        Birthdate = s.Birthdate,
+                        Sex = s.Sex,
+                        CivilStatus = s.CivilStatus,
+                        ContactNo = s.ContactNo,
+                        Email = s.Email,
+                        Occupation = s.Occupation
+                    }).FirstOrDefault<ResidentViewModel>();
+            }
+
+            if (u == null)
+                return NotFound();
+
+            return Ok(u);
         }
 
-        [HttpPost]
-        public ActionResult Delete(string id, FormCollection collection)
+        // Create User Method
+        public IHttpActionResult PostNewResident(ResidentViewModel u)
         {
-            try
-            {
-                tblresident resident = dbConn.tblresidents.Where(x => x.ResidentID == id).FirstOrDefault();
-                dbConn.tblresidents.Remove(resident);
-                dbConn.SaveChanges();
+            if (u == null)
+                return BadRequest("Invalid resident data.");
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            using (var ctx = new db_barangay_systemEntities())
             {
-                return View();
+                var newResident = new tblresident()
+                {
+                    ResidentID = u.ResidentID,
+                    HouseholdID = u.HouseholdID,
+                    FirstName = u.FirstName,
+                    MiddleName = u.MiddleName,
+                    LastName = u.LastName,
+                    Birthdate = u.Birthdate,
+                    Sex = u.Sex,
+                    CivilStatus = u.CivilStatus,
+                    ContactNo = u.ContactNo,
+                    Email = u.Email,
+                    Occupation = u.Occupation
+                };
+
+                ctx.tblresidents.Add(newResident);
+                ctx.SaveChanges();
             }
+
+            return Ok("Resident successfully created.");
+        }
+
+        // Update Method
+        public IHttpActionResult PutResident(ResidentViewModel u)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new db_barangay_systemEntities())
+            {
+                var existingResident = ctx.tblresidents
+                    .Where(s => s.ResidentID == s.ResidentID)
+                    .FirstOrDefault<tblresident>();
+
+                if (existingResident != null)
+                {
+                    existingResident.ResidentID = u.ResidentID;
+                    existingResident.HouseholdID = u.HouseholdID;
+                    existingResident.FirstName = u.FirstName;
+                    existingResident.MiddleName = u.MiddleName;
+                    existingResident.LastName = u.LastName;
+                    existingResident.Birthdate = u.Birthdate;
+                    existingResident.Sex = u.Sex;
+                    existingResident.CivilStatus = u.CivilStatus;
+                    existingResident.ContactNo = u.ContactNo;
+                    existingResident.Email = u.Email;
+                    existingResident.Occupation = u.Occupation;
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
+
+        // Delete Method
+        public IHttpActionResult DeleteResident(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return BadRequest("Not a valid id");
+
+            using (var ctx = new db_barangay_systemEntities())
+            {
+                var u = ctx.tblresidents
+                    .Where(s => s.ResidentID == id)
+                    .FirstOrDefault();
+
+                if (u == null)
+                    return NotFound();
+
+                ctx.tblresidents.Remove(u);
+                ctx.SaveChanges();
+            }
+
+            return Ok();
         }
 
     }
