@@ -10,16 +10,14 @@ namespace WebApiJEM.Controllers
 {
     public class ProductController : ApiController
     {
-        //
         // GET: /Product/
-
-        public IHttpActionResult GetAllProducts()
+        public IHttpActionResult GetAllProductsJEM()
         {
-            IList<ProductViewModel> products = null;
+            IList<ProductViewModel> productsJEM = null;
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                products = ctx.products.Select(p => new ProductViewModel()
+                productsJEM = ctxJEM.products.Select(p => new ProductViewModel()
                 {
                     id = p.id,
                     name = p.name,
@@ -28,21 +26,21 @@ namespace WebApiJEM.Controllers
                     category_id = p.category_id
                 }).ToList<ProductViewModel>();
             }
-            if (products.Count == 0)
+            if (productsJEM.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(products);
+            return Ok(productsJEM);
         }
 
         //Read One Method
-        public IHttpActionResult GetProductById(int id)
+        public IHttpActionResult GetProductByIdJEM(int id)
         {
-            ProductViewModel prod = null;
+            ProductViewModel prodJEM = null;
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                prod = ctx.products.Where(s => s.id == id)
+                prodJEM = ctxJEM.products.Where(s => s.id == id)
                     .Select(s => new ProductViewModel()
                     {
                         id = s.id,
@@ -52,52 +50,52 @@ namespace WebApiJEM.Controllers
                         category_id = s.category_id
                     }).FirstOrDefault<ProductViewModel>();
             }
-            if (prod == null)
+            if (prodJEM == null)
             {
                 return NotFound();
             }
-            return Ok(prod);
+            return Ok(prodJEM);
         }
 
         //Create Product Method
-        public IHttpActionResult PostNewProduct(ProductViewModel prod)
+        public IHttpActionResult PostNewProductJEM(ProductViewModel prodJEM)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid Data");
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                ctx.products.Add(new product()
+                ctxJEM.products.Add(new product()
                 {
-                    id = prod.id,
-                    name = prod.name,
-                    description = prod.description,
-                    price = prod.price,
-                    category_id = prod.category_id
+                    id = prodJEM.id,
+                    name = prodJEM.name,
+                    description = prodJEM.description,
+                    price = prodJEM.price,
+                    category_id = prodJEM.category_id
                 });
-                ctx.SaveChanges();
+                ctxJEM.SaveChanges();
             }
             return Ok();
         }
 
         //Update Method
-        public IHttpActionResult  Put(ProductViewModel prod)
+        public IHttpActionResult PutProductJEM(ProductViewModel prodJEM)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Not a valid model");
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                var existingProduct = ctx.products.Where(s => s.id == prod.id)
+                var existingProductJEM = ctxJEM.products.Where(s => s.id == prodJEM.id)
                             .FirstOrDefault<product>();
 
-                if (existingProduct != null)
+                if (existingProductJEM != null)
                 {
-                    existingProduct.name = prod.name;
-                    existingProduct.description = prod.description;
-                    existingProduct.price = prod.price;
-                    existingProduct.category_id = prod.category_id;
-                    ctx.SaveChanges();
+                    existingProductJEM.name = prodJEM.name;
+                    existingProductJEM.description = prodJEM.description;
+                    existingProductJEM.price = prodJEM.price;
+                    existingProductJEM.category_id = prodJEM.category_id;
+                    ctxJEM.SaveChanges();
                 }
                 else
                 {
@@ -109,19 +107,19 @@ namespace WebApiJEM.Controllers
         }
 
         //Delete Method
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult DeleteProductJEM(int id)
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                var prod = ctx.products
+                var prodJEM = ctxJEM.products
                     .Where(s => s.id == id)
                     .FirstOrDefault();
 
-                ctx.products.Remove(prod);
-                ctx.SaveChanges();
+                ctxJEM.products.Remove(prodJEM);
+                ctxJEM.SaveChanges();
             }
 
             return Ok();

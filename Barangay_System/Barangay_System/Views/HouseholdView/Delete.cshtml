@@ -1,0 +1,34 @@
+﻿@model Barangay_System.Models.HouseholdViewModel
+
+@{
+    ViewBag.Title = "Delete Household";
+}
+<br />
+<h2 style="margin-left:10px">Delete Household</h2>
+<h5 style="margin-left:10px" class="text-danger">Are you sure you want to delete this household?</h5>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HouseholdID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HouseholdID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HouseholdNo)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HouseholdNo)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Purok)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Purok)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Address)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HeadResidentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HeadResidentID)</dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <p style="margin-left:10px">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    </p>
+}

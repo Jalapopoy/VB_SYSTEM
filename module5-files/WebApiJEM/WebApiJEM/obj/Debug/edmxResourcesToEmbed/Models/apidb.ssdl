@@ -3,18 +3,6 @@
   <EntityContainer Name="api_dbModelStoreContainer">
     <EntitySet Name="categories" EntityType="api_dbModel.Store.categories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="products" EntityType="api_dbModel.Store.products" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="User" EntityType="api_dbModel.Store.User" store:Type="Tables" store:Schema="dbo" store:Name="User">
-      <DefiningQuery>SELECT 
-      [User].[UserID] AS [UserID], 
-      [User].[LastName] AS [LastName], 
-      [User].[FirstName] AS [FirstName], 
-      [User].[MiddleName] AS [MiddleName], 
-      [User].[Gender] AS [Gender], 
-      [User].[UserType] AS [UserType], 
-      [User].[Email] AS [Email], 
-      [User].[Password] AS [Password]
-      FROM [dbo].[User] AS [User]</DefiningQuery>
-    </EntitySet>
   </EntityContainer>
   <EntityType Name="categories">
     <Key>
@@ -33,21 +21,5 @@
     <Property Name="description" Type="nvarchar" MaxLength="255" />
     <Property Name="price" Type="float" />
     <Property Name="category_id" Type="int" />
-  </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'D:\DOCUMENTS\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\MODULE5-FILES\WEBAPIJEM\WEBAPIJEM\APP_DATA\API_DB.MDF.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="LastName" Type="nchar" MaxLength="50" />
-    <Property Name="FirstName" Type="nchar" MaxLength="50" />
-    <Property Name="MiddleName" Type="nchar" MaxLength="50" />
-    <Property Name="Gender" Type="nchar" MaxLength="50" />
-    <Property Name="UserType" Type="nchar" MaxLength="50" />
-    <Property Name="Email" Type="nchar" MaxLength="50" />
-    <Property Name="Password" Type="nchar" MaxLength="50" />
   </EntityType>
 </Schema>

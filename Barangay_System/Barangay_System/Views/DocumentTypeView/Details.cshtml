@@ -1,0 +1,30 @@
+﻿@model Barangay_System.Models.DocumentTypeViewModel
+
+@{
+    ViewBag.Title = "Document Type Details";
+}
+<br />
+<h2 style="margin-left:10px">Document Type Details</h2>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DocTypeID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.DocTypeID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Fee)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Fee)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ProcessingDays)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ProcessingDays)</dd>
+</dl>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocTypeID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

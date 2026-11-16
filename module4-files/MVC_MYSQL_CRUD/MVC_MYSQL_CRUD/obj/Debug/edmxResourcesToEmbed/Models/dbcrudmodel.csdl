@@ -3,6 +3,7 @@
   <EntityContainer Name="dbcrudjemEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="tblstudents" EntityType="dbcrudjemModel.tblstudent" />
     <EntitySet Name="tblusers" EntityType="dbcrudjemModel.tbluser" />
+    <EntitySet Name="tblemployees" EntityType="dbcrudjemModel.tblemployee" />
   </EntityContainer>
   <EntityType Name="tblstudent">
     <Key>
@@ -25,5 +26,16 @@
     <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="EmailAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblemployee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Type="String" Name="EmployeeID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Department" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

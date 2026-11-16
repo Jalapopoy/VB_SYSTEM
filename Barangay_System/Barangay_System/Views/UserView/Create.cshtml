@@ -1,75 +1,81 @@
 ﻿@model Barangay_System.Models.UserViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create User";
 }
+<br />
+<h2 style="margin-left:10px">Create User</h2>
+<br />
 
-<h2>Create</h2>
-
-@using (Html.BeginForm("Create", "UserView", FormMethod.Post)) {
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>UserViewModel</legend>
+    if (ViewBag.Message != null)
+    {
+        <div style="border:solid 1px green">
+            @ViewBag.Message
+        </div>
+    }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserID)
-            @Html.ValidationMessageFor(model => model.UserID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Username)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Username)
-            @Html.ValidationMessageFor(model => model.Username)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Password)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Role)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Role)
-            @Html.ValidationMessageFor(model => model.Role)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ResidentID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ResidentID)
-            @Html.ValidationMessageFor(model => model.ResidentID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Status)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Status)
-            @Html.ValidationMessageFor(model => model.Status)
-        </div>
-
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.UserID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.UserID, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.UserID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Username)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Username, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Username)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Password)</td>
+            <td>
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Role)</td>
+            <td>
+                @Html.DropDownListFor(model => model.Role,
+                    new SelectList(new[] { "Admin", "Staff", "Resident" }),
+                    "-- Select Role --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Role)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ResidentID)</td>
+            <td>
+                @Html.DropDownListFor(model => model.ResidentID, (SelectList)ViewBag.Residents,
+                    "-- None (Admin / Staff) --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ResidentID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Status)</td>
+            <td>
+                @Html.DropDownListFor(model => model.Status,
+                    new SelectList(new[] { "Active", "Inactive" }),
+                    "-- Select Status --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-primary">Save User</button>
+                @Html.ActionLink("Back to User List", "Index", null, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    </table>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

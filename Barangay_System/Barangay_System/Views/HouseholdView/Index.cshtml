@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Barangay_System.Models.HouseholdViewModel>
+
+@{
+    ViewBag.Title = "Household List";
+}
+<br />
+<h2 style="margin-left:10px">Household List</h2>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("+ Add New Household", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Household ID</th>
+            <th>Household No.</th>
+            <th>Purok</th>
+            <th>Address</th>
+            <th>Head Resident ID</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.HouseholdID)</td>
+                <td>@Html.DisplayFor(modelItem => item.HouseholdNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Purok)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.HeadResidentID)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.HouseholdID }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.HouseholdID }, new { @class = "btn btn-sm btn-primary" })
+                    @if ((Session["Role"] as string) == "Admin")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.HouseholdID }, new { @class = "btn btn-sm btn-danger" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p style="margin-left:10px" class="text-muted">No households found.</p>
+}

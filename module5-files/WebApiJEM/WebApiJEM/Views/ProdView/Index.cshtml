@@ -4,15 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<br />
-<h2 style="margin-left:10px">Product List</h2>
-<br />
+<h2>Index</h2>
 
-<p style="margin-left:10px">
+<p>
     @Html.ActionLink("Create New", "CreateProduct")
 </p>
-<table class="table table-striped">
+<table>
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.name)
         </th>
@@ -31,6 +32,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
@@ -43,15 +47,14 @@
             @Html.DisplayFor(modelItem => item.category_id)
         </td>
         <td>
-            <div class="btn btn-secondary pull-right m-b-15px">
-                @Html.ActionLink("Edit", "EditProduct", new { id = item.id }, new { @class = "text-white glyphicon text-decoration-none" })
-            </div>
-            <div class="btn btn-secondary pull-right m-b-15px">
-                @Html.ActionLink("Details", "ViewProduct", new { id=item.id }, new { @class = "text-white glyphicon text-decoration-none" })
-            </div>
-            <div class="btn btn-secondary pull-right m-b-15px">
-                @Html.ActionLink("Delete", "DeleteProduct", new { id=item.id }, new { @class = "text-white glyphicon text-decoration-none" })
-            </div>
+            @Html.ActionLink("Edit", "EditProduct", new { id=item.id }) |
+            @Html.ActionLink("Details", "ViewProduct", new { id=item.id }) |
+            @Html.ActionLink("Delete", "DeleteProduct", new { id=item.id })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         </td>
     </tr>
 }

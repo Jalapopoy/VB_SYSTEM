@@ -1,0 +1,30 @@
+﻿@model Barangay_System.Models.HouseholdViewModel
+
+@{
+    ViewBag.Title = "Household Details";
+}
+<br />
+<h2 style="margin-left:10px">Household Details</h2>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HouseholdID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HouseholdID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HouseholdNo)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HouseholdNo)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Purok)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Purok)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Address)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HeadResidentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HeadResidentID)</dd>
+</dl>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HouseholdID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

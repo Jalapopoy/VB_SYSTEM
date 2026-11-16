@@ -30,6 +30,6 @@ D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_Syste
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\bin\System.Web.WebPages.xml
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\bin\System.Web.WebPages.Deployment.xml
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\bin\System.Web.WebPages.Razor.xml
-D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\obj\Debug\Barangay_System.csprojResolveAssemblyReference.cache
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\obj\Debug\Barangay_System.dll
 D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\obj\Debug\Barangay_System.pdb
+D:\Documents\SCHOOL FOLDERS\JEM-ITPE3-III-JUSTICE\Barangay_System\Barangay_System\obj\Debug\Barangay_System.csprojResolveAssemblyReference.cache

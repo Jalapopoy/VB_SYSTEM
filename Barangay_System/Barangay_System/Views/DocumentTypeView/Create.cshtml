@@ -1,0 +1,67 @@
+﻿@model Barangay_System.Models.DocumentTypeViewModel
+
+@{
+    ViewBag.Title = "Create Document Type";
+}
+<br />
+<h2 style="margin-left:10px">Create Document Type</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.DocTypeID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.DocTypeID, new
+                {
+                    @class = "form-control",
+                    @readonly = "readonly"
+                })
+                @Html.ValidationMessageFor(model => model.DocTypeID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Name)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Name, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Description)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Description, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Fee)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Fee, null, new { type = "number", step = "0.01", min = "0", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Fee)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ProcessingDays)</td>
+            <td>
+                @Html.TextBoxFor(model => model.ProcessingDays, null, new { type = "number", min = "0", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProcessingDays)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-primary">Save Document Type</button>
+                @Html.ActionLink("Back to Document Type List", "Index", null, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

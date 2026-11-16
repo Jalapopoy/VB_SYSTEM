@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using System.Net.Http;
-
+using System.Web.Mvc;
 using WebApiJEM.Models;
 
 namespace WebApiJEM.Controllers
@@ -13,177 +12,168 @@ namespace WebApiJEM.Controllers
     {
         //
         // GET: /ProdView/
-
         public ActionResult Index()
         {
-            IEnumerable<ProductViewModel> products = null;
+            IEnumerable<ProductViewModel> productsJEM = null;
 
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/"); // change the portal number
-                //HTTP Get
-                var responseTask = client.GetAsync("product");
-                responseTask.Wait();
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/"); // Change the portal number
+                //HTTP GET
+                var responseTaskJEM = clientJEM.GetAsync("product");
+                responseTaskJEM.Wait();
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = responseTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IList<ProductViewModel>>();
-                    readTask.Wait();
+                    var readTaskJEM = resultJEM.Content.ReadAsAsync<IList<ProductViewModel>>();
+                    readTaskJEM.Wait();
 
-                    products = readTask.Result;
+                    productsJEM = readTaskJEM.Result;
                 }
-
-                else //web api sent error message
+                else // web api sent error response
                 {
                     //log response status here
 
-                    products = Enumerable.Empty<ProductViewModel>();
+                    productsJEM = Enumerable.Empty<ProductViewModel>();
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-
                 }
             }
-            return View(products);
+            return View(productsJEM);
         }
 
         public ActionResult ViewProduct(int id)
         {
-            ProductViewModel product = null;
+            ProductViewModel productJEM = null;
 
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015//api/");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
+                var responseTaskJEM = clientJEM.GetAsync("product?id=" + id.ToString());
+                responseTaskJEM.Wait();
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = responseTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                    readTask.Wait();
+                    var readTaskJEM = resultJEM.Content.ReadAsAsync<ProductViewModel>();
+                    responseTaskJEM.Wait();
 
-                    product = readTask.Result;
+                    productJEM = readTaskJEM.Result;
                 }
             }
-            return View(product);
-        }
 
+            return View(productJEM);
+        }
         public ActionResult CreateProduct()
         {
             return View();
         }
-
-        //GET METHOD - Create Button Action
+        //GET METHOD - CREATE BUTTON ACTION
         [System.Web.Mvc.HttpPost]
-        public ActionResult CreateProduct(ProductViewModel product)
+        public ActionResult CreateProduct(ProductViewModel productJEM)
         {
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/product");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/product/");
 
                 //HTTP POST
-                var postTask = client.PostAsJsonAsync<ProductViewModel>("product", product);
-                postTask.Wait();
+                var postTaskJEM = clientJEM.PostAsJsonAsync<ProductViewModel>("product", productJEM);
+                postTaskJEM.Wait();
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = postTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
-
-                return View(product);
             }
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(productJEM);
         }
 
-        //EDIT
         public ActionResult EditProduct(int id)
         {
-            ProductViewModel product = null;
+            ProductViewModel productJEM = null;
 
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
+                var responseTaskJEM = clientJEM.GetAsync("product?id=" + id.ToString());
+                responseTaskJEM.Wait();
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = responseTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                    readTask.Wait();
+                    var readTaskJEM = resultJEM.Content.ReadAsAsync<ProductViewModel>();
+                    readTaskJEM.Wait();
 
-                    product = readTask.Result;
+                    productJEM = readTaskJEM.Result;
                 }
             }
-            return View(product);
+            return View(productJEM);
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult EditProduct(ProductViewModel product)
+        public ActionResult EditProduct(ProductViewModel productJEM)
         {
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/product");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/product");
 
-                //HTTP POST 
-                var putTask = client.PutAsJsonAsync<ProductViewModel>("product", product);
-                putTask.Wait();
+                //HTTP POST
+                var putTaskJEM = clientJEM.PutAsJsonAsync<ProductViewModel>("product", productJEM);
+                putTaskJEM.Wait();
 
-                var result = putTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = putTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
             }
-            return View(product);
+            return View(productJEM);
         }
 
-        //DELETE
         public ActionResult DeleteProduct(int id)
         {
-            ProductViewModel product = null;
+            ProductViewModel productJEM = null;
 
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/");
                 //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
-                
-                var result = responseTask.Result;
-                if(result.IsSuccessStatusCode)
-                {
-                   var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                   readTask.Wait();
+                var responseTaskJEM = clientJEM.GetAsync("product?id=" + id.ToString());
+                responseTaskJEM.Wait();
 
-                   product = readTask.Result;
+                var resultJEM = responseTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
+                {
+                    var readTaskJEM = resultJEM.Content.ReadAsAsync<ProductViewModel>();
+                    readTaskJEM.Wait();
+
+                    productJEM = readTaskJEM.Result;
                 }
             }
-            return View(product);
+            return View(productJEM);
         }
-
-        
-        [HttpPost]
-        public ActionResult DeleteProduct(int id, FormCollection collection)
+        [System.Web.Mvc.HttpPost]
+        public ActionResult DeleteProduct(int id, FormCollection collectionJEM)
         {
-            using (var client = new HttpClient())
+            using (var clientJEM = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
+                clientJEM.BaseAddress = new Uri("http://localhost:50015/api/");
 
-                var deleteTask = client.DeleteAsync("product/" + id.ToString());
-                deleteTask.Wait();
+                var deleteTaskJEM = clientJEM.DeleteAsync("product/" + id.ToString());
 
-                var result = deleteTask.Result;
-                if (result.IsSuccessStatusCode)
+                var resultJEM = deleteTaskJEM.Result;
+                if (resultJEM.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
             }
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }

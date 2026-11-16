@@ -1,64 +1,33 @@
 ﻿@model Barangay_System.Models.UserViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Details";
 }
+<br />
+<h2 style="margin-left:10px">User Details</h2>
+<br />
 
-<h2>Details</h2>
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.UserID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.UserID)</dd>
 
-<fieldset>
-    <legend>tbluser</legend>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Username)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserID)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Role)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Role)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Username)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Username)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ResidentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ResidentID)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Password)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Password)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Status)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Role)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Role)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.created_at)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.created_at)</dd>
+</dl>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ResidentID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ResidentID)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Status)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Status)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.created_at)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.created_at)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
+<p style="margin-left:10px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
 </p>

@@ -5,14 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
 using Barangay_System.Models;
+using Barangay_System.Filters;
 
 namespace Barangay_System.Controllers
 {
+    [AuthorizeRole("Admin")]
     public class UserViewController : Controller
     {
-        //
-        // GET: /UserView/
-
         public ActionResult Index()
         {
             IEnumerable<UserViewModel> user = null;
@@ -67,9 +66,78 @@ namespace Barangay_System.Controllers
 
             return View(user);
         }
+
+        private void PopulateResidents(string selected)
+        {
+            IList<ResidentViewModel> residents = new List<ResidentViewModel>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:50129/api/");
+
+                var task = client.GetAsync("resident");
+                task.Wait();
+
+                if (task.Result.IsSuccessStatusCode)
+                {
+                    var read = task.Result.Content.ReadAsAsync<IList<ResidentViewModel>>();
+                    read.Wait();
+                    residents = read.Result;
+                }
+            }
+
+            ViewBag.Residents = new SelectList(
+                residents.Select(r => new
+                {
+                    ResidentID = r.ResidentID,
+                    FullName = r.FirstName + " " + r.LastName
+                }),
+                "ResidentID", "FullName", selected);
+        }
+
         public ActionResult Create()
         {
-            return View();
+            UserViewModel user = new UserViewModel();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:50129/api/");
+
+                var responseTask = client.GetAsync("user");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<UserViewModel>>();
+                    readTask.Wait();
+
+                    int maxNumber = 0;
+
+                    foreach (var u in readTask.Result)
+                    {
+                        int number;
+
+                        if (!String.IsNullOrEmpty(u.UserID) &&
+                            u.UserID.StartsWith("USR-") &&
+                            Int32.TryParse(u.UserID.Substring(4), out number))
+                        {
+                            if (number > maxNumber)
+                                maxNumber = number;
+                        }
+                    }
+
+                    user.UserID = "USR-" + (maxNumber + 1).ToString("D3");
+                }
+                else
+                {
+                    user.UserID = "USR-001";
+                }
+            }
+
+            PopulateResidents(user.ResidentID);
+            return View(user);
         }
         //GET METHOD - CREATE BUTTON ACTION
         [System.Web.Mvc.HttpPost]
@@ -160,22 +228,32 @@ namespace Barangay_System.Controllers
             }
             return View(user);
         }
+
+        [AuthorizeRole("Admin")]
         [System.Web.Mvc.HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
+            if (id == Convert.ToString(Session["UserID"]))
+            {
+                TempData["Error"] = "You cannot delete the account you are signed in with.";
+                return RedirectToAction("Index");
+            }
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:50129/api/");
 
-                var deleteTask = client.DeleteAsync("user/" + id.ToString());
+                var deleteTask = client.DeleteAsync("household/" + id);
+                deleteTask.Wait();
 
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
+
+                TempData["Error"] = "This record cannot be deleted because other records use it.";
+                return RedirectToAction("Index");
             }
-            return View();
         }
 
     }

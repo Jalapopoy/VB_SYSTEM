@@ -1,0 +1,74 @@
+﻿@model Barangay_System.Models.HouseholdViewModel
+
+@{
+    ViewBag.Title = "Create Household";
+}
+<br />
+<h2 style="margin-left:10px">Create Household</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.HouseholdID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.HouseholdID, new
+                {
+                    @class = "form-control",
+                    @readonly = "readonly"
+                })
+                @Html.ValidationMessageFor(model => model.HouseholdID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.HouseholdNo)</td>
+            <td>
+                @Html.TextBoxFor(model => model.HouseholdNo, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HouseholdNo)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Purok)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Purok, null, new { @class = "form-control", list = "purokList" })
+                <datalist id="purokList">
+                    <option value="Purok 1" />
+                    <option value="Purok 2" />
+                    <option value="Purok 3" />
+                    <option value="Purok 4" />
+                    <option value="Purok 5" />
+                </datalist>
+                @Html.ValidationMessageFor(model => model.Purok)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Address)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Address, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.HeadResidentID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.HeadResidentID, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HeadResidentID)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-primary">Save Household</button>
+                @Html.ActionLink("Back to Household List", "Index", null, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

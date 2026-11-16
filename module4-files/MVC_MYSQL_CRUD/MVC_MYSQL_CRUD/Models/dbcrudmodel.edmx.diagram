@@ -7,6 +7,7 @@
       <Diagram DiagramId="b1b1147b84df445f832c6bb3bc8d0c91" Name="Diagram1">
         <EntityTypeShape EntityType="dbcrudjemModel.tblstudent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbcrudjemModel.tbluser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbcrudjemModel.tblemployee" Width="1.5" PointX="4.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

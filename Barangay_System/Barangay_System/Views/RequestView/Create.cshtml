@@ -1,0 +1,80 @@
+﻿@model Barangay_System.Models.RequestViewModel
+
+@{
+    ViewBag.Title = "Create Request";
+}
+<br />
+<h2 style="margin-left:10px">Create Request</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.RequestID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.RequestID,
+    new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.RequestID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ResidentID)</td>
+            <td>
+                @Html.DropDownListFor(model => model.ResidentID,
+                    (SelectList)ViewBag.Residents,
+                    "-- Select Resident --",
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ResidentID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.DocTypeID)</td>
+            <td>
+                @Html.DropDownListFor(model => model.DocTypeID,
+                    (SelectList)ViewBag.DocTypes,
+                    "-- Select Document Type --",
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DocTypeID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Purpose)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Purpose, null,
+                    new { @class = "form-control", list = "purposeList" })
+                <datalist id="purposeList">
+                    <option value="Employment" />
+                    <option value="Scholarship" />
+                    <option value="School Requirement" />
+                    <option value="Business" />
+                    <option value="Bank Account Opening" />
+                    <option value="Travel" />
+                    <option value="Government Transaction" />
+                </datalist>
+                @Html.ValidationMessageFor(model => model.Purpose)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Remarks)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Remarks, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Remarks)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+                @Html.ActionLink("Back to Request List", "Index", null, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,34 @@
+﻿@model Barangay_System.Models.DocumentTypeViewModel
+
+@{
+    ViewBag.Title = "Delete Document Type";
+}
+<br />
+<h2 style="margin-left:10px">Delete Document Type</h2>
+<h5 style="margin-left:10px" class="text-danger">Are you sure you want to delete this document type?</h5>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DocTypeID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.DocTypeID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Fee)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Fee)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ProcessingDays)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ProcessingDays)</dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <p style="margin-left:10px">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+    </p>
+}

@@ -1,0 +1,73 @@
+﻿@model Barangay_System.Models.PaymentViewModel
+
+@{
+    ViewBag.Title = "Edit Payment";
+}
+<br />
+<h2 style="margin-left:10px">Edit Payment</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.PaymentID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.PaymentID, null, new { @class = "form-control", @readonly = "readonly" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.RequestID)</td>
+            <td>
+                @Html.TextBoxFor(model => model.RequestID, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.RequestID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Amount)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Amount, null, new { type = "number", step = "0.01", min = "0", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Amount)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.PaymentMethod)</td>
+            <td>
+                @Html.DropDownListFor(model => model.PaymentMethod,
+                    new SelectList(new[] { "Cash", "GCash", "Bank Transfer" }),
+                    "-- Select Payment Method --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentMethod)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ORNumber)</td>
+            <td>
+                @Html.TextBoxFor(model => model.ORNumber, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ORNumber)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Status)</td>
+            <td>
+                @Html.DropDownListFor(model => model.Status,
+                    new SelectList(new[] { "Unpaid", "Paid", "Refunded" }),
+                    "-- Select Status --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                @Html.ActionLink("Back to Payment List", "Index", null, new { @class = "btn btn-secondary" })
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

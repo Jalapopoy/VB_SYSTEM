@@ -20,32 +20,25 @@ namespace WebApiJEM.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/"); // change the portal number
-                //HTTP Get
-                var responseTask = client.GetAsync("product");
-                responseTask.Wait();
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var response = client.GetAsync("product").Result;
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IList<ProductViewModel>>();
-                    readTask.Wait();
-
-                    products = readTask.Result;
+                    products = response.Content
+                        .ReadAsAsync<IList<ProductViewModel>>().Result;
                 }
-
-                else //web api sent error message
+                else
                 {
-                    //log response status here
-
                     products = Enumerable.Empty<ProductViewModel>();
-
-                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-
                 }
             }
+
             return View(products);
         }
+
 
         public ActionResult ViewProduct(int id)
         {
@@ -53,20 +46,18 @@ namespace WebApiJEM.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015//api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var response = client.GetAsync("product?id=" + id).Result;
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                    readTask.Wait();
-
-                    product = readTask.Result;
+                    product = response.Content
+                        .ReadAsAsync<ProductViewModel>().Result;
                 }
             }
+
             return View(product);
         }
 
@@ -81,19 +72,20 @@ namespace WebApiJEM.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/product");
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync<ProductViewModel>("product", product);
+                var postTask = client.PostAsJsonAsync("product", product);
                 postTask.Wait();
 
                 var result = postTask.Result;
+
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
-                ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
+                ModelState.AddModelError("", "Failed to create product.");
                 return View(product);
             }
         }
@@ -105,20 +97,18 @@ namespace WebApiJEM.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
+                var response = client.GetAsync("product?id=" + id).Result;
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                    readTask.Wait();
-
-                    product = readTask.Result;
+                    product = response.Content
+                        .ReadAsAsync<ProductViewModel>().Result;
                 }
             }
+
             return View(product);
         }
 
@@ -127,19 +117,22 @@ namespace WebApiJEM.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/product");
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                //HTTP POST 
-                var putTask = client.PutAsJsonAsync<ProductViewModel>("product", product);
+                var putTask = client.PutAsJsonAsync("product", product);
                 putTask.Wait();
 
                 var result = putTask.Result;
+
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
+
+                ModelState.AddModelError("", "Failed to update product.");
+                return View(product);
             }
-            return View(product);
         }
 
         //DELETE
@@ -149,40 +142,42 @@ namespace WebApiJEM.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("product?id=" + id.ToString());
-                responseTask.Wait();
-                
-                var result = responseTask.Result;
-                if(result.IsSuccessStatusCode)
-                {
-                   var readTask = result.Content.ReadAsAsync<ProductViewModel>();
-                   readTask.Wait();
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                   product = readTask.Result;
+                var response = client.GetAsync("product?id=" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    product = response.Content
+                        .ReadAsAsync<ProductViewModel>().Result;
                 }
             }
+
             return View(product);
         }
 
-        
-        [HttpPost]
+
+        [System.Web.Mvc.HttpPost]
         public ActionResult DeleteProduct(int id, FormCollection collection)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:50015/api/");
+                client.BaseAddress = new Uri(
+                    "https://pyawtbruh-001-site1.ktempurl.com/api/");
 
-                var deleteTask = client.DeleteAsync("product/" + id.ToString());
+                var deleteTask = client.DeleteAsync("product/" + id);
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
+
                 if (result.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
             }
+
+            ModelState.AddModelError("", "Failed to delete product.");
             return RedirectToAction("Index");
         }
     }

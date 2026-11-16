@@ -1,0 +1,42 @@
+﻿@model Barangay_System.Models.RequestViewModel
+
+@{
+    ViewBag.Title = "Request Details";
+}
+<br />
+<h2 style="margin-left:10px">Request Details</h2>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.RequestID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.RequestID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ResidentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ResidentID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DocTypeID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.DocTypeID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Purpose)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Purpose)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateRequested)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.DateRequested)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Status)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ProcessedBy)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ProcessedBy)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateReleased)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.DateReleased)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Remarks)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Remarks)</dd>
+</dl>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

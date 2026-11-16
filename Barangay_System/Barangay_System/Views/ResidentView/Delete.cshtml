@@ -1,95 +1,52 @@
 ﻿@model Barangay_System.Models.ResidentViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Resident";
 }
+<br />
+<h2 style="margin-left:10px">Delete Resident</h2>
+<h5 style="margin-left:10px" class="text-danger">Are you sure you want to delete this resident?</h5>
+<br />
 
-<h2>Delete</h2>
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ResidentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ResidentID)</dd>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>ResidentViewModel</legend>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.HouseholdID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.HouseholdID)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ResidentID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ResidentID)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FirstName)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.HouseholdID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.HouseholdID)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MiddleName)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.MiddleName)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LastName)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.MiddleName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.MiddleName)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Birthdate)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Birthdate)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.LastName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Sex)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Sex)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Birthdate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Birthdate)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CivilStatus)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.CivilStatus)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Sex)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Sex)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ContactNo)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ContactNo)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CivilStatus)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CivilStatus)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ContactNo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ContactNo)
-    </div>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Occupation)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Occupation)</dd>
+</dl>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Occupation)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Occupation)
-    </div>
-</fieldset>
-@using (Html.BeginForm()) {
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+@using (Html.BeginForm())
+{
+    <p style="margin-left:10px">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
     </p>
 }

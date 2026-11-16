@@ -3,7 +3,6 @@
   <EntityContainer Name="api_dbEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="categories" EntityType="api_dbModel.category" />
     <EntitySet Name="products" EntityType="api_dbModel.product" />
-    <EntitySet Name="Users" EntityType="api_dbModel.User" />
   </EntityContainer>
   <EntityType Name="category">
     <Key>
@@ -22,18 +21,5 @@
     <Property Name="description" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
     <Property Name="price" Type="Double" />
     <Property Name="category_id" Type="Int32" />
-  </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Type="Int32" Name="UserID" Nullable="false" />
-    <Property Type="String" Name="LastName" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Gender" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="UserType" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Email" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Type="String" Name="Password" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
 </Schema>

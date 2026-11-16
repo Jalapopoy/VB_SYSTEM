@@ -74,6 +74,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -143,12 +144,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DocumentTypeController.cs" />
+    <Compile Include="Controllers\DocumentTypeViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseholdController.cs" />
+    <Compile Include="Controllers\HouseholdViewController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentViewController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
+    <Compile Include="Controllers\RequestViewController.cs" />
     <Compile Include="Controllers\ResidentController.cs" />
     <Compile Include="Controllers\ResidentViewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserViewController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\AuthorizeRoleAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +176,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>api_db.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DocumentTypeViewModel.cs" />
+    <Compile Include="Models\HouseholdViewModel.cs" />
+    <Compile Include="Models\PaymentViewModel.cs" />
+    <Compile Include="Models\RequestViewModel.cs" />
     <Compile Include="Models\ResidentViewModel.cs" />
     <Compile Include="Models\tbldocumenttype.cs">
       <DependentUpon>api_db.tt</DependentUpon>
@@ -278,6 +291,13 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Views\UserView\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\UserView\Delete.cshtml" />
+    <Content Include="Views\UserView\Details.cshtml" />
+    <Content Include="Views\UserView\Edit.cshtml" />
+    <Content Include="Views\UserView\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -302,19 +322,37 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\UserView\Index.cshtml" />
-    <Content Include="Views\UserView\Details.cshtml" />
-    <Content Include="Views\UserView\Create.cshtml" />
-    <Content Include="Views\UserView\Edit.cshtml" />
-    <Content Include="Views\UserView\Delete.cshtml" />
-    <Content Include="Views\ResidentView\Index.cshtml" />
-    <Content Include="Views\ResidentView\Details.cshtml" />
-    <Content Include="Views\ResidentView\Edit.cshtml" />
-    <Content Include="Views\ResidentView\Create.cshtml" />
-    <Content Include="Views\ResidentView\Delete.cshtml" />
+    <Content Include="Views\ResidentVIew\Create.cshtml" />
+    <Content Include="Views\ResidentVIew\Delete.cshtml" />
+    <Content Include="Views\ResidentVIew\Details.cshtml" />
+    <Content Include="Views\ResidentVIew\Edit.cshtml" />
+    <Content Include="Views\ResidentVIew\Index.cshtml" />
+    <Content Include="Views\PaymentView\Create.cshtml" />
+    <Content Include="Views\PaymentView\Delete.cshtml" />
+    <Content Include="Views\PaymentView\Details.cshtml" />
+    <Content Include="Views\PaymentView\Edit.cshtml" />
+    <Content Include="Views\PaymentView\Index.cshtml" />
+    <Content Include="Views\RequestView\Create.cshtml" />
+    <Content Include="Views\RequestView\Delete.cshtml" />
+    <Content Include="Views\RequestView\Details.cshtml" />
+    <Content Include="Views\RequestView\Edit.cshtml" />
+    <Content Include="Views\RequestView\Index.cshtml" />
+    <Content Include="Views\DocumentTypeView\Index.cshtml" />
+    <Content Include="Views\DocumentTypeView\Details.cshtml" />
+    <Content Include="Views\DocumentTypeView\Create.cshtml" />
+    <Content Include="Views\DocumentTypeView\Edit.cshtml" />
+    <Content Include="Views\DocumentTypeView\Delete.cshtml" />
+    <Content Include="Views\HouseholdView\Index.cshtml" />
+    <Content Include="Views\HouseholdView\Details.cshtml" />
+    <Content Include="Views\HouseholdView\Create.cshtml" />
+    <Content Include="Views\HouseholdView\Edit.cshtml" />
+    <Content Include="Views\HouseholdView\Delete.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Home\Homepage.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

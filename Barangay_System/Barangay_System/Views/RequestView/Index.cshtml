@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Barangay_System.Models.RequestViewModel>
+
+@{
+    ViewBag.Title = "Request List";
+}
+<br />
+<h2 style="margin-left:10px">Request List</h2>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("+ Add New Request", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Request ID</th>
+            <th>Resident ID</th>
+            <th>Document Type ID</th>
+            <th>Purpose</th>
+            <th>Date Requested</th>
+            <th>Status</th>
+            <th>Remarks</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.RequestID)</td>
+                <td>@Html.DisplayFor(modelItem => item.ResidentID)</td>
+                <td>@Html.DisplayFor(modelItem => item.DocTypeID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Purpose)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateRequested)</td>
+                <td>
+                    @{
+                        string cls = "badge-secondary";
+                        if (item.Status == "Pending") { cls = "badge-warning"; }
+                        else if (item.Status == "Approved") { cls = "badge-info"; }
+                        else if (item.Status == "Released") { cls = "badge-success"; }
+                        else if (item.Status == "Rejected") { cls = "badge-danger"; }
+                    }
+                    <span class="badge @cls">@item.Status</span>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Remarks)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.RequestID }, new { @class = "btn btn-sm btn-info" })
+
+                    @if (item.Status == "Pending")
+                    {
+                        using (Html.BeginForm("ChangeStatus", "RequestView", FormMethod.Post, new { style = "display:inline" }))
+                        {
+                            @Html.Hidden("id", item.RequestID)
+                            @Html.Hidden("newStatus", "Approved")
+                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                        }
+                    }
+
+                    @if (item.Status == "Approved")
+                    {
+                        using (Html.BeginForm("ChangeStatus", "RequestView", FormMethod.Post, new { style = "display:inline" }))
+                        {
+                            @Html.Hidden("id", item.RequestID)
+                            @Html.Hidden("newStatus", "Released")
+                            <button type="submit" class="btn btn-sm btn-primary">Release</button>
+                        }
+                    }
+
+                    @if (item.Status == "Pending" || item.Status == "Approved")
+                    {
+                        using (Html.BeginForm("ChangeStatus", "RequestView", FormMethod.Post, new { style = "display:inline", onsubmit = "return askReason(this);" }))
+                        {
+                            @Html.Hidden("id", item.RequestID)
+                            @Html.Hidden("newStatus", "Rejected")
+                            @Html.Hidden("remarks", "")
+                            <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                        }
+                    }
+
+                    @if ((Session["Role"] as string) == "Admin")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RequestID }, new { @class = "btn btn-sm btn-secondary" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p style="margin-left:10px" class="text-muted">No requests found.</p>
+}
+<script>
+    function askReason(form) {
+        var reason = prompt("Reason for rejecting this request:");
+        if (reason == null || reason.trim() == "") {
+            return false;   // cancel: nothing is submitted
+        }
+        form.remarks.value = reason.trim();
+        return true;
+    }
+</script>

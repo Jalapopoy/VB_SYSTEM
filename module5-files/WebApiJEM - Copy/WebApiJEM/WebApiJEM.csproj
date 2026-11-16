@@ -135,6 +135,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CatViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProdViewController.cs" />
@@ -298,6 +299,11 @@
     <Content Include="Views\ProdView\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Homepage.cshtml" />
+    <Content Include="Views\CatView\Index.cshtml" />
+    <Content Include="Views\CatView\ViewCategory.cshtml" />
+    <Content Include="Views\CatView\CreateCategory.cshtml" />
+    <Content Include="Views\CatView\EditCategory.cshtml" />
+    <Content Include="Views\CatView\DeleteCategory.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

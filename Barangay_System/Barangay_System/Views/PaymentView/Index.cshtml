@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Barangay_System.Models.PaymentViewModel>
+
+@{
+    ViewBag.Title = "Payment List";
+}
+<br />
+<h2 style="margin-left:10px">Payment List</h2>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("+ Add New Payment", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Payment ID</th>
+            <th>Request ID</th>
+            <th>Amount (PHP)</th>
+            <th>Method</th>
+            <th>OR Number</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.PaymentID)</td>
+                <td>@Html.DisplayFor(modelItem => item.RequestID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+                <td>@Html.DisplayFor(modelItem => item.ORNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.PaymentID }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PaymentID }, new { @class = "btn btn-sm btn-primary" })
+                    @if ((Session["Role"] as string) == "Admin")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PaymentID }, new { @class = "btn btn-sm btn-danger" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p style="margin-left:10px" class="text-muted">No payments found.</p>
+}

@@ -11,8 +11,8 @@ namespace Barangay_System.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        public string ResidentID { get; set; }
+        public string ResidentID{ get; set; }
         public string Status { get; set; }
-        public Nullable<DateTime> created_at { get; set; }
+        public Nullable<System.DateTime> created_at { get; set; }
     }
 }

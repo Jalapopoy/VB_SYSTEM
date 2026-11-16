@@ -34,11 +34,6 @@ namespace Barangay_System.Controllers
                 }).ToList<ResidentViewModel>();
             }
 
-            if (resis.Count == 0)
-            {
-                return NotFound();
-            }
-
             return Ok(resis);
         }
 
@@ -72,7 +67,8 @@ namespace Barangay_System.Controllers
             return Ok(u);
         }
 
-        // Create User Method
+
+        // Create Resident Method
         public IHttpActionResult PostNewResident(ResidentViewModel u)
         {
             if (u == null)
@@ -83,6 +79,28 @@ namespace Barangay_System.Controllers
 
             using (var ctx = new db_barangay_systemEntities())
             {
+                // Generate ResidentID
+                var existingIDs = ctx.tblresidents
+                    .Select(r => r.ResidentID)
+                    .ToList();
+
+                int maxNumber = 0;
+
+                foreach (var existingID in existingIDs)
+                {
+                    int number;
+
+                    if (!String.IsNullOrEmpty(existingID) &&
+                        existingID.StartsWith("RES-") &&
+                        Int32.TryParse(existingID.Substring(4), out number))
+                    {
+                        if (number > maxNumber)
+                            maxNumber = number;
+                    }
+                }
+
+                u.ResidentID = "RES-" + (maxNumber + 1).ToString("D3");
+
                 var newResident = new tblresident()
                 {
                     ResidentID = u.ResidentID,
@@ -114,7 +132,7 @@ namespace Barangay_System.Controllers
             using (var ctx = new db_barangay_systemEntities())
             {
                 var existingResident = ctx.tblresidents
-                    .Where(s => s.ResidentID == s.ResidentID)
+                    .Where(s => s.ResidentID == u.ResidentID)
                     .FirstOrDefault<tblresident>();
 
                 if (existingResident != null)
@@ -155,6 +173,12 @@ namespace Barangay_System.Controllers
 
                 if (u == null)
                     return NotFound();
+
+
+                if (ctx.tblrequests.Any(r => r.ResidentID == id) ||
+                    ctx.tblusers.Any(x => x.ResidentID == id) ||
+                    ctx.tblhouseholds.Any(h => h.HeadResidentID == id))
+                    return BadRequest("This resident is still used by other records.");
 
                 ctx.tblresidents.Remove(u);
                 ctx.SaveChanges();

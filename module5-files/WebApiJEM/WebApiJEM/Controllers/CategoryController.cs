@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
+using System.Net;
 using System.Net.Http;
+using System.Web.Http;
 
 using WebApiJEM.Models;
 
@@ -10,37 +11,36 @@ namespace WebApiJEM.Controllers
 {
     public class CategoryController : ApiController
     {
-        //
         // GET: /Category/
 
-        public IHttpActionResult GetAllCategory()
+        public IHttpActionResult GetAllCategoriesJEM()
         {
-            IList<CategoryViewModel> categories = null;
+            IList<CategoryViewModel> categoriesJEM = null;
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                categories = ctx.categories.Select(c => new CategoryViewModel()
+                categoriesJEM = ctxJEM.categories.Select(p => new CategoryViewModel()
                 {
-                    id = c.id,
-                    name = c.name,
-                    description = c.description
+                    id = p.id,
+                    name = p.name,
+                    description = p.description
                 }).ToList<CategoryViewModel>();
             }
-            if (categories.Count == 0)
+            if (categoriesJEM.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(categories);
+            return Ok(categoriesJEM);
         }
 
         //Read One Method
-        public IHttpActionResult GetCategoryById(int id)
+        public IHttpActionResult GetCategoryByIdJEM(int id)
         {
-            CategoryViewModel cat = null;
+            CategoryViewModel catJEM = null;
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                cat = ctx.categories.Where(s => s.id == id)
+                catJEM = ctxJEM.categories.Where(s => s.id == id)
                     .Select(s => new CategoryViewModel()
                     {
                         id = s.id,
@@ -48,46 +48,72 @@ namespace WebApiJEM.Controllers
                         description = s.description
                     }).FirstOrDefault<CategoryViewModel>();
             }
-            if (cat == null)
+            if (catJEM == null)
             {
                 return NotFound();
             }
-            return Ok(cat);
+            return Ok(catJEM);
         }
 
-        //Create Product Method
-        public IHttpActionResult PostNewCategory(CategoryViewModel cat)
+        //Create Category Method
+        public IHttpActionResult PostNewCategoryJEM(CategoryViewModel catJEM)
         {
             if (!ModelState.IsValid)
                 return BadRequest("Invalid Data");
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                ctx.categories.Add(new category()
+                ctxJEM.categories.Add(new category()
                 {
-                    id = cat.id,
-                    name = cat.name,
-                    description = cat.description
+                    id = catJEM.id,
+                    name = catJEM.name,
+                    description = catJEM.description
                 });
-                ctx.SaveChanges();
+                ctxJEM.SaveChanges();
             }
             return Ok();
         }
 
+        //Update Method
+        public IHttpActionResult PutCategoryJEM(CategoryViewModel catJEM)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctxJEM = new api_dbEntities())
+            {
+                var existingCategoryJEM = ctxJEM.categories.Where(s => s.id == catJEM.id)
+                            .FirstOrDefault<category>();
+
+                if (existingCategoryJEM != null)
+                {
+                    existingCategoryJEM.name = catJEM.name;
+                    existingCategoryJEM.description = catJEM.description;
+                    ctxJEM.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            return Ok();
+        }
+
         //Delete Method
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult DeleteCategoryJEM(int id)
         {
             if (id <= 0)
                 return BadRequest("Not a valid id");
 
-            using (var ctx = new api_dbEntities())
+            using (var ctxJEM = new api_dbEntities())
             {
-                var cat = ctx.categories
+                var catJEM = ctxJEM.categories
                     .Where(s => s.id == id)
                     .FirstOrDefault();
 
-                ctx.categories.Remove(cat);
-                ctx.SaveChanges();
+                ctxJEM.categories.Remove(catJEM);
+                ctxJEM.SaveChanges();
             }
 
             return Ok();

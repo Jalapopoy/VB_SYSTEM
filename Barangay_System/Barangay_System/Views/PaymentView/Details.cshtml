@@ -1,0 +1,36 @@
+﻿@model Barangay_System.Models.PaymentViewModel
+
+@{
+    ViewBag.Title = "Payment Details";
+}
+<br />
+<h2 style="margin-left:10px">Payment Details</h2>
+<br />
+
+<dl class="row" style="margin-left:10px">
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PaymentID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.PaymentID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.RequestID)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.RequestID)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Amount)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Amount)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PaymentMethod)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.PaymentMethod)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ORNumber)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.ORNumber)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PaymentDate)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.PaymentDate)</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Status)</dt>
+    <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+</dl>
+
+<p style="margin-left:10px">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaymentID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</p>

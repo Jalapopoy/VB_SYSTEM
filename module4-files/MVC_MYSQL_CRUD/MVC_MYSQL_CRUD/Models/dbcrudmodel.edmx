@@ -4,11 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbcrudjemModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbcrudjemModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="dbcrudjemModelStoreContainer">
+          <EntitySet Name="tblemployee" EntityType="dbcrudjemModel.Store.tblemployee" store:Type="Tables" Schema="dbcrudjem" />
           <EntitySet Name="tblstudent" EntityType="dbcrudjemModel.Store.tblstudent" store:Type="Tables" Schema="dbcrudjem" />
           <EntitySet Name="tbluser" EntityType="dbcrudjemModel.Store.tbluser" store:Type="Tables" Schema="dbcrudjem" />
         </EntityContainer>
+        <EntityType Name="tblemployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tblstudent">
           <Key>
             <PropertyRef Name="StudentID" />
@@ -31,14 +43,14 @@
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbcrudjemModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="dbcrudjemEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="tblstudents" EntityType="dbcrudjemModel.tblstudent" />
           <EntitySet Name="tblusers" EntityType="dbcrudjemModel.tbluser" />
+          <EntitySet Name="tblemployees" EntityType="dbcrudjemModel.tblemployee" />
         </EntityContainer>
         <EntityType Name="tblstudent">
           <Key>
@@ -61,6 +73,17 @@
           <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblemployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Type="String" Name="EmployeeID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Department" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -89,6 +112,18 @@
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblemployees">
+            <EntityTypeMapping TypeName="dbcrudjemModel.tblemployee">
+              <MappingFragment StoreEntitySet="tblemployee">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -55,7 +55,7 @@ namespace WebApiJEM.Controllers
             return Ok(cat);
         }
 
-        //Create Product Method
+        //Create Category Method
         public IHttpActionResult PostNewCategory(CategoryViewModel cat)
         {
             if (!ModelState.IsValid)
@@ -71,6 +71,32 @@ namespace WebApiJEM.Controllers
                 });
                 ctx.SaveChanges();
             }
+            return Ok();
+        }
+
+        //Update Method
+        public IHttpActionResult Put(CategoryViewModel cat)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
+            using (var ctx = new api_dbEntities())
+            {
+                var existingCategory = ctx.categories.Where(s => s.id == cat.id)
+                            .FirstOrDefault<category>();
+
+                if (existingCategory != null)
+                {
+                    existingCategory.name = cat.name;
+                    existingCategory.description = cat.description;
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
             return Ok();
         }
 

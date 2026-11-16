@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-WebApiJEM-20261016115023;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-WebApiJEM-20261016115023.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Documents\\SCHOOL\ FOLDERS\\JEM-ITPE3-III-JUSTICE\\module5-files\\WebApiJEM\ -\ Copy\\WebApiJEM\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="api_dbEntities-Web.config Connection String" description="api_dbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.apidb.csdl|res://*/Models.apidb.ssdl|res://*/Models.apidb.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sql8010.site4now.net;initial catalog=db_acfe6c_pyawtbruh;user id=db_acfe6c_pyawtbruh_admin;password=Pyawt_2817;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Documents\\SCHOOL\ FOLDERS\\JEM-ITPE3-III-JUSTICE\\module5-files\\WebApiJEM\ -\ Copy\\WebApiJEM\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='api_dbEntities']/@connectionString" />
+  </parameter>
+</parameters>

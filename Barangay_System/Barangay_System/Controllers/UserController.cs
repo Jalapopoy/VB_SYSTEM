@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -22,7 +21,6 @@ namespace Barangay_System.Controllers
                 {
                     UserID = u.UserID,
                     Username = u.Username,
-                    Password = u.Password,
                     Role = u.Role,
                     ResidentID = u.ResidentID,
                     Status = u.Status,
@@ -50,17 +48,11 @@ namespace Barangay_System.Controllers
                     {
                         UserID = s.UserID,
                         Username = s.Username,
-                        Password = s.Password,
                         Role = s.Role,
                         ResidentID = s.ResidentID,
                         Status = s.Status,
                         created_at = s.created_at
                     }).FirstOrDefault<UserViewModel>();
-            }
-
-            if (u == null)
-            {
-                return NotFound();
             }
 
             return Ok(u);
@@ -77,6 +69,27 @@ namespace Barangay_System.Controllers
 
             using (var ctx = new db_barangay_systemEntities())
             {
+                if (ctx.tblusers.Any(x => x.Username == u.Username))
+                    return BadRequest("Username already taken.");
+
+                var existingIDs = ctx.tblusers.Select(x => x.UserID).ToList();
+                int maxNumber = 0;
+
+                foreach (var existingID in existingIDs)
+                {
+                    int number;
+
+                    if (!String.IsNullOrEmpty(existingID) &&
+                        existingID.StartsWith("USR-") &&
+                        Int32.TryParse(existingID.Substring(4), out number))
+                    {
+                        if (number > maxNumber)
+                            maxNumber = number;
+                    }
+                }
+
+                u.UserID = "USR-" + (maxNumber + 1).ToString("D3");
+
                 var newUser = new tbluser()
                 {
                     UserID = u.UserID,
@@ -109,13 +122,13 @@ namespace Barangay_System.Controllers
 
                 if (existingUser != null)
                 {
-                    existingUser.UserID = u.UserID;
                     existingUser.Username = u.Username;
-                    existingUser.Password = u.Password;
                     existingUser.Role = u.Role;
                     existingUser.ResidentID = u.ResidentID;
                     existingUser.Status = u.Status;
-                    existingUser.created_at = DateTime.Now;
+
+                    if (!string.IsNullOrWhiteSpace(u.Password))
+                        existingUser.Password = u.Password;
 
                     ctx.SaveChanges();
                 }
@@ -127,6 +140,7 @@ namespace Barangay_System.Controllers
 
             return Ok();
         }
+
 
         // Delete Method
         public IHttpActionResult DeleteUser(string id)

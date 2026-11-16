@@ -1,69 +1,48 @@
 ﻿@model IEnumerable<Barangay_System.Models.UserViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User List";
 }
+<br />
+<h2 style="margin-left:10px">User List</h2>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="margin-left:10px">
+    @Html.ActionLink("+ Add New User", "Create", null, new { @class = "btn btn-primary" })
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResidentID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.created_at)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResidentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.created_at)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
-        </td>
-    </tr>
-}
-
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Resident ID</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UserID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                <td>@Html.DisplayFor(modelItem => item.ResidentID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.created_at)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.UserID }, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserID }, new { @class = "btn btn-sm btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID }, new { @class = "btn btn-sm btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@if (!Model.Any())
+{
+    <p style="margin-left:10px" class="text-muted">No users found.</p>
+}

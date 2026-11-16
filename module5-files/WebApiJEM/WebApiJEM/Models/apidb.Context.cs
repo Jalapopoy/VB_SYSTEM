@@ -27,6 +27,5 @@ namespace WebApiJEM.Models
     
         public DbSet<category> categories { get; set; }
         public DbSet<product> products { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }
